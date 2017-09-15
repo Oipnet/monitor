@@ -1,0 +1,16 @@
+<md-card fxLayout="column" fxLayoutAlign="center center">
+  <md-card-title>CPU Usage</md-card-title>
+  <md-card-content style="display: block;" class="chart">
+      <canvas baseChart width="400" height="400"
+          [datasets]="datas"
+          [labels]="labels"
+          [options]="options"
+          [chartType]="type"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"
+      ></canvas>
+  </md-card-content>
+  <md-card-actions fxLayout="row" fxLayoutAlign="end center">
+      <button md-raised-button color="warn" (click)=resetChart()>Reset</button>
+  </md-card-actions>
+</md-card>
