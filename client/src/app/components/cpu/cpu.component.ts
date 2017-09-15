@@ -11,6 +11,7 @@ import { MonitorService } from '../../services/monitor.service'
 export class CpuComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
   private datas: Array<any>;
+  private totalMemoire:any;
   private labels: Array<string>;
   private options: any = {
     responsive: true
@@ -28,7 +29,6 @@ export class CpuComponent implements OnInit {
   ngOnInit() {
     this.monitorService.onCPUData().subscribe(cpuDatas => {
       this.datas[0].data.push(cpuDatas)
-        
       const now = new Date;
       this.labels.push(`${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`);
 
@@ -40,6 +40,7 @@ export class CpuComponent implements OnInit {
         }
       })
     })
+   this.monitorService.totalMemory().subscribe(el => { this.totalMemoire = el });
   }
 
   resetChart() {

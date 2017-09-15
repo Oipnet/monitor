@@ -27,4 +27,12 @@ export class MonitorService {
       })
     })
   }
+
+  public totalMemory(): Observable<any> {
+    return new Observable(observer => {
+      this.monitor.on('totalMemory:data', (totalMemory) => {
+        observer.next(totalMemory);
+      })
+    })
+  }
 }

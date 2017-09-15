@@ -41,6 +41,16 @@ io.on('connection', (client) => {
     }, 10000)
 });
 
+io.on('connection', (client) => {
+    setInterval(() => {
+        var totalMemory = os.totalmem();
+        var digit = totalMemory.toString()[0];
+        console.log(digit);
+        io.sockets.emit('totalMemory:data', digit);
+    }, 10000)
+});
+
+
 server.listen(3000, () => {
     console.log('API listening on port 3000');
 });
